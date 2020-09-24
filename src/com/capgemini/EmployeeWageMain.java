@@ -3,6 +3,10 @@ import java.util.*;
 
 
 public class EmployeeWageMain {
+	public static final int WAGE_PER_HOUR=20;
+	public static final int FULL_DAY_HOUR=8;
+	public static final int HALF_DAY_HOUR=8;
+	
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation");
@@ -15,6 +19,20 @@ public class EmployeeWageMain {
 		if(prs_abs==0)
 			System.out.println("Absent");
 		else System.out.println("Present");
+		
+		int full_part=rand.nextInt(2);
+		int daily_wage=0;
+		
+		if(full_part==1)
+		daily_wage=WAGE_PER_HOUR*FULL_DAY_HOUR;
+		else daily_wage=WAGE_PER_HOUR*HALF_DAY_HOUR;
+		
+		System.out.println("Wage of employee for the day :"+daily_wage);
+		
+		
+		
+		
+		
 	}
 
 }
