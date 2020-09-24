@@ -22,10 +22,15 @@ public class EmployeeWageMain {
 		
 		int full_part=rand.nextInt(2);
 		int daily_wage=0;
+		switch(full_part) {
+		case 1:daily_wage=WAGE_PER_HOUR*FULL_DAY_HOUR;
+			   break;
+		case 2:daily_wage=WAGE_PER_HOUR*HALF_DAY_HOUR;
+				break;
+		default:System.out.print("nothing");
 		
-		if(full_part==1)
-		daily_wage=WAGE_PER_HOUR*FULL_DAY_HOUR;
-		else daily_wage=WAGE_PER_HOUR*HALF_DAY_HOUR;
+		}
+		
 		
 		System.out.println("Wage of employee for the day :"+daily_wage);
 		
