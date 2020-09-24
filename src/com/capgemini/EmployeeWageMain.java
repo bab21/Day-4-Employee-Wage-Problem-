@@ -24,6 +24,20 @@ public class EmployeeWageMain {
 		else System.out.println("Present");
 		
 		int full_part=rand.nextInt(2);
+		
+		
+		
+		int monthly_wage=compute_wage(full_part);
+		
+		System.out.println("Wage of employee for the month :"+monthly_wage);
+		
+		
+		
+		
+		
+	}
+	public static int compute_wage(int employee_type) {
+		
 		int daily_wage=0;
 		int monthly_wage=0;
 		int total_working_hrs=0;
@@ -33,7 +47,7 @@ public class EmployeeWageMain {
 		
 		while(day<WORKING_DAYS_PER_MONTH && total_working_hrs<MAX_WORKING_HOURS) {
 			
-		switch(full_part) {
+		switch(employee_type) {
 		case 1:daily_wage=WAGE_PER_HOUR*FULL_DAY_HOUR;
 			   total_working_hrs=total_working_hrs+8;
 			   break;
@@ -47,15 +61,7 @@ public class EmployeeWageMain {
 		day++;
 		
 		}
-		
-		System.out.println("no of days"+day);
-		
-		
-		
-		System.out.println("Wage of employee for the month :"+monthly_wage);
-		
-		
-		
+		return monthly_wage;
 		
 		
 	}
