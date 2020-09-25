@@ -3,11 +3,11 @@ import java.util.*;
 
 
 public class EmployeeWageMain {
-	public static final int WAGE_PER_HOUR=20;
+//	public static final int WAGE_PER_HOUR=20;
 	public static final int FULL_DAY_HOUR=8;
-	public static final int HALF_DAY_HOUR=8;
-	public static final int WORKING_DAYS_PER_MONTH=20;
-	public static final int MAX_WORKING_HOURS=100;
+	public static final int HALF_DAY_HOUR=4;
+//	public static final int WORKING_DAYS_PER_MONTH=20;
+//	public static final int MAX_WORKING_HOURS=100;
 	
 	
 	
@@ -23,11 +23,8 @@ public class EmployeeWageMain {
 			System.out.println("Absent");
 		else System.out.println("Present");
 		
-		int full_part=rand.nextInt(2);
 		
-		
-		
-		int monthly_wage=compute_wage(full_part);
+		int monthly_wage=compute_wage("capgemini",20,20,200);
 		
 		System.out.println("Wage of employee for the month :"+monthly_wage);
 		
@@ -36,34 +33,39 @@ public class EmployeeWageMain {
 		
 		
 	}
-	public static int compute_wage(int employee_type) {
+	public static int compute_wage(String company,int empRatePerHour,int numberOfWorkingDays,int maxHoursPerMonth) {
 		
-		int daily_wage=0;
-		int monthly_wage=0;
-		int total_working_hrs=0;
-		int day=0;
-		
-		
-		
-		while(day<WORKING_DAYS_PER_MONTH && total_working_hrs<MAX_WORKING_HOURS) {
-			
-		switch(employee_type) {
-		case 1:daily_wage=WAGE_PER_HOUR*FULL_DAY_HOUR;
-			   total_working_hrs=total_working_hrs+8;
-			   break;
-		case 0:daily_wage=WAGE_PER_HOUR*HALF_DAY_HOUR;
-		       total_working_hrs=total_working_hrs+4;
-				break;
-		default:System.out.print("nothing");
-		
-		}
-		monthly_wage=monthly_wage+daily_wage;
-		day++;
-		
-		}
-		return monthly_wage;
-		
-		
+	     int empHrs=0,totalEmpHrs=0,totalWorkingDays=0;
+	     Random rand=new Random();
+	     //checking if employee is full_time or part_time....
+	     int full_part=rand.nextInt(2);
+	     
+	     
+	     while(totalEmpHrs<=maxHoursPerMonth && totalWorkingDays<numberOfWorkingDays) {
+	    	 totalWorkingDays++;
+	    	
+	    	 
+	    	 switch(full_part) {
+	    	 case 1:
+	    		 empHrs=FULL_DAY_HOUR;
+	    		 break;
+	    	 case 0:
+	    		 empHrs=HALF_DAY_HOUR;
+	    		 break;
+	    	 default:
+	    		empHrs=0;	 
+	    	 }
+	    	 
+	    	 totalEmpHrs +=empHrs;
+	    	 System.out.println("Day#:"+totalWorkingDays+" Emp Hr: "+empHrs);
+	    	 
+	    	 
+	     }
+	     int totalEmpWage=totalEmpHrs*empRatePerHour;
+	     System.out.println("Total Emp Wage for Company :"+company +" is :"+totalEmpWage);
+	     
+	     return totalEmpWage;
+	     
 	}
 
 }
