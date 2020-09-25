@@ -2,7 +2,7 @@ package com.capgemini;
 import java.util.*;
 
 
-public class EmployeeWageMain {
+public class EmployeeWageMain implements IComputeEmpWage{
 //	public static final int WAGE_PER_HOUR=20;
 	public static final int FULL_DAY_HOUR=8;
 	public static final int HALF_DAY_HOUR=4;
@@ -33,12 +33,12 @@ public class EmployeeWageMain {
 		companyEmpWageArray=new ArrayList<CompanyEmpWage>();
 	}
 	
-	private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
+	public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
 		companyEmpWageArray.add(new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth));
 		numOfCompany++;
 	}
 	
-	private void computeEmpWage(int emptype) {
+	public void computeEmpWage(int emptype) {
 		for (int i =0;i<numOfCompany;i++) {
 			companyEmpWageArray.get(i).setTotalEmpWage(this.computeEmpWage(companyEmpWageArray.get(i),emptype));
 			System.out.println(companyEmpWageArray.get(i));
@@ -97,10 +97,9 @@ public class EmployeeWageMain {
 		EmployeeWageMain mainobject=new EmployeeWageMain();
 		
 		mainobject.addCompanyEmpWage("google", 20, 2, 20);
+		mainobject.addCompanyEmpWage("deshaw", 50, 2, 60);
 		mainobject.compute_daily_wage(full_part);
 		System.out.println("Employee Daily wage   ..... "+mainobject.daily_wage);
-		
-		mainobject.addCompanyEmpWage("deshaw", 50, 2, 60);
 		
 		mainobject.computeEmpWage(full_part);
 	}
