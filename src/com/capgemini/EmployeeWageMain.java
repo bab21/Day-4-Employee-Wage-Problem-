@@ -9,6 +9,20 @@ public class EmployeeWageMain {
 //	public static final int WORKING_DAYS_PER_MONTH=20;
 //	public static final int MAX_WORKING_HOURS=100;
 	
+	private final String company;
+	private final int empRatePerHour;
+	private final int numOfWorkingDays;
+	private final int maxHoursPerMonth;
+	private int totalEmpWage;
+	
+	public EmployeeWageMain(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
+		this.company=company;
+		this.empRatePerHour=empRatePerHour;
+		this.numOfWorkingDays=numOfWorkingDays;
+		this.maxHoursPerMonth=maxHoursPerMonth;
+		
+	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -23,17 +37,19 @@ public class EmployeeWageMain {
 			System.out.println("Absent");
 		else System.out.println("Present");
 		
+		EmployeeWageMain object=new EmployeeWageMain("capgemini",20,2,10);
 		
-		int monthly_wage=compute_wage("capgemini",20,20,200);
+		object.compute_wage();
 		
-		System.out.println("Wage of employee for the month :"+monthly_wage);
+		
+		System.out.println(object);
 		
 		
 		
 		
 		
 	}
-	public static int compute_wage(String company,int empRatePerHour,int numberOfWorkingDays,int maxHoursPerMonth) {
+	public  void compute_wage() {
 		
 	     int empHrs=0,totalEmpHrs=0,totalWorkingDays=0;
 	     Random rand=new Random();
@@ -41,7 +57,7 @@ public class EmployeeWageMain {
 	     int full_part=rand.nextInt(2);
 	     
 	     
-	     while(totalEmpHrs<=maxHoursPerMonth && totalWorkingDays<numberOfWorkingDays) {
+	     while(totalEmpHrs<=maxHoursPerMonth && totalWorkingDays<numOfWorkingDays) {
 	    	 totalWorkingDays++;
 	    	
 	    	 
@@ -61,11 +77,15 @@ public class EmployeeWageMain {
 	    	 
 	    	 
 	     }
-	     int totalEmpWage=totalEmpHrs*empRatePerHour;
+	     totalEmpWage=totalEmpHrs*empRatePerHour;
 	     System.out.println("Total Emp Wage for Company :"+company +" is :"+totalEmpWage);
 	     
-	     return totalEmpWage;
+	    
 	     
+	}
+	public String toString() {
+		return "Total Emp Wage for Company:"+company +" is : "+totalEmpWage;
+		
 	}
 
 }
