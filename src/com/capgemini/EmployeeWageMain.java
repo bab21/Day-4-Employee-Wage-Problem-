@@ -10,7 +10,25 @@ public class EmployeeWageMain {
 //	public static final int MAX_WORKING_HOURS=100;
 	
 	private int numOfCompany=0;
+	private int daily_wage;
 	private ArrayList<CompanyEmpWage> companyEmpWageArray;
+	
+	public void compute_daily_wage(int emp_type) {
+		int ans=0;
+		
+		
+		int emphrs=0;
+		if(emp_type==0)
+			emphrs=4;
+		else emphrs=8;
+		
+		for(int i=0;i<numOfCompany;i++) {
+			ans=ans+companyEmpWageArray.get(i).empRatePerHour*emphrs;
+		}
+		daily_wage=ans;
+		
+	}
+	
 	public EmployeeWageMain() {
 		companyEmpWageArray=new ArrayList<CompanyEmpWage>();
 	}
@@ -20,25 +38,22 @@ public class EmployeeWageMain {
 		numOfCompany++;
 	}
 	
-	private void computeEmpWage() {
+	private void computeEmpWage(int emptype) {
 		for (int i =0;i<numOfCompany;i++) {
-			companyEmpWageArray.get(i).setTotalEmpWage(this.computeEmpWage(companyEmpWageArray.get(i)));
+			companyEmpWageArray.get(i).setTotalEmpWage(this.computeEmpWage(companyEmpWageArray.get(i),emptype));
 			System.out.println(companyEmpWageArray.get(i));
 		}
 	}
-	public  int computeEmpWage(CompanyEmpWage object) {
+	public  int computeEmpWage(CompanyEmpWage object,int emptype) {
 		
 	     int empHrs=0,totalEmpHrs=0,totalWorkingDays=0;
-	     Random rand=new Random();
-	     //checking if employee is full_time or part_time....
-	     int full_part=rand.nextInt(2);
 	     
 	     
 	     while(totalEmpHrs<=object.maxHoursPerMonth && totalWorkingDays<object.numOfWorkingDays) {
 	    	 totalWorkingDays++;
 	    	
 	    	 
-	    	 switch(full_part) {
+	    	 switch(emptype) {
 	    	 case 1:
 	    		 empHrs=FULL_DAY_HOUR;
 	    		 break;
@@ -68,6 +83,10 @@ public class EmployeeWageMain {
 		
 		Random rand=new Random();
 		
+	     //checking if employee is full_time or part_time....
+	     int full_part=rand.nextInt(2);
+	     
+		
 		//Checking for attendance....
 		int prs_abs=rand.nextInt(2);
 		
@@ -78,9 +97,12 @@ public class EmployeeWageMain {
 		EmployeeWageMain mainobject=new EmployeeWageMain();
 		
 		mainobject.addCompanyEmpWage("google", 20, 2, 20);
+		mainobject.compute_daily_wage(full_part);
+		System.out.println("Employee Daily wage "+mainobject.daily_wage);
+		
 		mainobject.addCompanyEmpWage("deshaw", 50, 2, 60);
 		
-		mainobject.computeEmpWage();
+		mainobject.computeEmpWage(full_part);
 	}
 	
 
