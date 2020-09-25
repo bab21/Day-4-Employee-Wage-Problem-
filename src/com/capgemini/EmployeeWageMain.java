@@ -9,47 +9,24 @@ public class EmployeeWageMain {
 //	public static final int WORKING_DAYS_PER_MONTH=20;
 //	public static final int MAX_WORKING_HOURS=100;
 	
-	private final String company;
-	private final int empRatePerHour;
-	private final int numOfWorkingDays;
-	private final int maxHoursPerMonth;
-	private int totalEmpWage;
-	
-	public EmployeeWageMain(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
-		this.company=company;
-		this.empRatePerHour=empRatePerHour;
-		this.numOfWorkingDays=numOfWorkingDays;
-		this.maxHoursPerMonth=maxHoursPerMonth;
-		
+	private int numOfCompany=0;
+	private CompanyEmpWage[] companyEmpWageArray;
+	public EmployeeWageMain() {
+		companyEmpWageArray=new CompanyEmpWage[6];
 	}
 	
-	
-	
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation");
-		
-		Random rand=new Random();
-		
-		//Checking for attendance....
-		int prs_abs=rand.nextInt(2);
-		
-		if(prs_abs==0)
-			System.out.println("Absent");
-		else System.out.println("Present");
-		
-		EmployeeWageMain object=new EmployeeWageMain("capgemini",20,2,10);
-		
-		object.compute_wage();
-		
-		
-		System.out.println(object);
-		
-		
-		
-		
-		
+	private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
+		companyEmpWageArray[numOfCompany]=new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+		numOfCompany++;
 	}
-	public  void compute_wage() {
+	
+	private void computeEmpWage() {
+		for (int i =0;i<numOfCompany;i++) {
+			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
+			System.out.println(companyEmpWageArray[i]);
+		}
+	}
+	public  int computeEmpWage(CompanyEmpWage object) {
 		
 	     int empHrs=0,totalEmpHrs=0,totalWorkingDays=0;
 	     Random rand=new Random();
@@ -57,7 +34,7 @@ public class EmployeeWageMain {
 	     int full_part=rand.nextInt(2);
 	     
 	     
-	     while(totalEmpHrs<=maxHoursPerMonth && totalWorkingDays<numOfWorkingDays) {
+	     while(totalEmpHrs<=object.maxHoursPerMonth && totalWorkingDays<object.numOfWorkingDays) {
 	    	 totalWorkingDays++;
 	    	
 	    	 
@@ -77,15 +54,34 @@ public class EmployeeWageMain {
 	    	 
 	    	 
 	     }
-	     totalEmpWage=totalEmpHrs*empRatePerHour;
-	     System.out.println("Total Emp Wage for Company :"+company +" is :"+totalEmpWage);
-	     
+	     int totalEmpWage=totalEmpHrs*object.empRatePerHour;
+	     System.out.println("Total Emp Wage for Company :"+object.company +" is :"+totalEmpWage);
+	     return totalEmpWage;
 	    
 	     
 	}
-	public String toString() {
-		return "Total Emp Wage for Company:"+company +" is : "+totalEmpWage;
+	
+	
+	
+	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation");
 		
+		Random rand=new Random();
+		
+		//Checking for attendance....
+		int prs_abs=rand.nextInt(2);
+		
+		if(prs_abs==0)
+			System.out.println("Absent");
+		else System.out.println("Present");
+		
+		EmployeeWageMain mainobject=new EmployeeWageMain();
+		
+		mainobject.addCompanyEmpWage("google", 20, 2, 20);
+		mainobject.addCompanyEmpWage("deshaw", 50, 2, 60);
+		
+		mainobject.computeEmpWage();
 	}
+	
 
 }
