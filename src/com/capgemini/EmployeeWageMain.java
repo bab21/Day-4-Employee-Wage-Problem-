@@ -98,7 +98,7 @@ public class EmployeeWageMain {
 		
 		mainobject.addCompanyEmpWage("google", 20, 2, 20);
 		mainobject.compute_daily_wage(full_part);
-		System.out.println("Employee Daily wage "+mainobject.daily_wage);
+		System.out.println("Employee Daily wage   ..... "+mainobject.daily_wage);
 		
 		mainobject.addCompanyEmpWage("deshaw", 50, 2, 60);
 		
