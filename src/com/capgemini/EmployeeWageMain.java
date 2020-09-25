@@ -2,7 +2,7 @@ package com.capgemini;
 import java.util.*;
 
 
-public class EmployeeWageMain {
+public class EmployeeWageMain implements IComputeEmpWage{
 //	public static final int WAGE_PER_HOUR=20;
 	public static final int FULL_DAY_HOUR=8;
 	public static final int HALF_DAY_HOUR=4;
@@ -15,12 +15,12 @@ public class EmployeeWageMain {
 		companyEmpWageArray=new ArrayList<CompanyEmpWage>();
 	}
 	
-	private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
+	public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
 		companyEmpWageArray.add(new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth));
 		numOfCompany++;
 	}
 	
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for (int i =0;i<numOfCompany;i++) {
 			companyEmpWageArray.get(i).setTotalEmpWage(this.computeEmpWage(companyEmpWageArray.get(i)));
 			System.out.println(companyEmpWageArray.get(i));
