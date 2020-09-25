@@ -10,20 +10,20 @@ public class EmployeeWageMain {
 //	public static final int MAX_WORKING_HOURS=100;
 	
 	private int numOfCompany=0;
-	private CompanyEmpWage[] companyEmpWageArray;
+	private ArrayList<CompanyEmpWage> companyEmpWageArray;
 	public EmployeeWageMain() {
-		companyEmpWageArray=new CompanyEmpWage[6];
+		companyEmpWageArray=new ArrayList<CompanyEmpWage>();
 	}
 	
 	private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
-		companyEmpWageArray[numOfCompany]=new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+		companyEmpWageArray.add(new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth));
 		numOfCompany++;
 	}
 	
 	private void computeEmpWage() {
 		for (int i =0;i<numOfCompany;i++) {
-			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
-			System.out.println(companyEmpWageArray[i]);
+			companyEmpWageArray.get(i).setTotalEmpWage(this.computeEmpWage(companyEmpWageArray.get(i)));
+			System.out.println(companyEmpWageArray.get(i));
 		}
 	}
 	public  int computeEmpWage(CompanyEmpWage object) {
