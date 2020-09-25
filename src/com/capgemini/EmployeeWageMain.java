@@ -28,6 +28,11 @@ public class EmployeeWageMain {
 		daily_wage=ans;
 		
 	}
+	public int total_wage_of_company(int company_num) {
+		
+		return companyEmpWageArray.get(company_num).totalEmpWage;
+		
+	}
 	
 	public EmployeeWageMain() {
 		companyEmpWageArray=new ArrayList<CompanyEmpWage>();
@@ -101,8 +106,15 @@ public class EmployeeWageMain {
 		System.out.println("Employee Daily wage "+mainobject.daily_wage);
 		
 		mainobject.addCompanyEmpWage("deshaw", 50, 2, 60);
-		
 		mainobject.computeEmpWage(full_part);
+		
+		int company_num=1;
+		int total_wage_of_the_company=mainobject.total_wage_of_company(company_num);
+		System.out.println("Total wage for company number "+(company_num+1)+" is "+total_wage_of_the_company);
+		
+		
+		
+		
 	}
 	
 
