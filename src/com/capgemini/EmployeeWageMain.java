@@ -77,7 +77,7 @@ public class EmployeeWageMain {
 		
 		EmployeeWageMain mainobject=new EmployeeWageMain();
 		
-		mainobject.addCompanyEmpWage("google", 20, 2, 20);
+		mainobject.addCompanyEmpWage("interviewbit", 20, 2, 20);
 		mainobject.addCompanyEmpWage("deshaw", 50, 2, 60);
 		
 		mainobject.computeEmpWage();
